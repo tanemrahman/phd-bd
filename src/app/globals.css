@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   PHD Design System — Tailwind v4 (CSS-first @theme)
+   Brand: deep teal-green (trust, growth) + warm gold (humanity) + coral (urgency)
+   ========================================================================= */
+
+@theme {
+  /* ---- Brand: Teal-Green ---- */
+  --color-brand-50: #f0faf7;
+  --color-brand-100: #d9f2ea;
+  --color-brand-200: #b3e5d6;
+  --color-brand-300: #80d1ba;
+  --color-brand-400: #47b598;
+  --color-brand-500: #1f9a7d;
+  --color-brand-600: #0e7c64;
+  --color-brand-700: #0c6351;
+  --color-brand-800: #0d4f42;
+  --color-brand-900: #0d4137;
+  --color-brand-950: #04251f;
+
+  /* ---- Accent: Gold / Amber ---- */
+  --color-accent-50: #fdf8ed;
+  --color-accent-100: #f8ecc9;
+  --color-accent-200: #f1d98f;
+  --color-accent-300: #e9c155;
+  --color-accent-400: #e0a536;
+  --color-accent-500: #d18a25;
+  --color-accent-600: #b46a1d;
+  --color-accent-700: #8f4e1c;
+  --color-accent-800: #763f1d;
+  --color-accent-900: #65361b;
+
+  /* ---- Coral: Urgency / Emergency / CTA ---- */
+  --color-coral-400: #ef7a64;
+  --color-coral-500: #e0533d;
+  --color-coral-600: #cf3f2c;
+  --color-coral-700: #ad3122;
+
+  /* ---- Ink & Paper neutrals ---- */
+  --color-ink: #0b1f25;
+  --color-ink-soft: #36474c;
+  --color-paper: #fbfbf8;
+  --color-paper-2: #f4f3ee;
+
+  /* ---- Fonts (mapped to next/font CSS variables) ---- */
+  --font-display: var(--font-sora), "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* ---- Easing & radius ---- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --radius-xl2: 1.25rem;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  ::selection {
+    background: var(--color-brand-600);
+    color: #fff;
+  }
+
+  /* Visible, accessible focus ring */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* =========================================================================
+   Utilities & helpers
+   ========================================================================= */
+
+/* Centered content rail used across the site */
+.rail {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 80rem;        /* 1280px */
+  padding-inline: 1.25rem;
+}
+@media (min-width: 768px) {
+  .rail { padding-inline: 2rem; }
+}
+
+/* Eyebrow / kicker label */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-brand-700);
+}
+
+/* Animated gradient mesh for hero / CTA backgrounds */
+.mesh {
+  background-color: var(--color-brand-950);
+  background-image:
+    radial-gradient(at 18% 22%, rgba(31, 154, 125, 0.55) 0px, transparent 50%),
+    radial-gradient(at 82% 0%, rgba(224, 165, 54, 0.30) 0px, transparent 45%),
+    radial-gradient(at 75% 78%, rgba(14, 124, 100, 0.65) 0px, transparent 55%),
+    radial-gradient(at 30% 90%, rgba(224, 83, 61, 0.20) 0px, transparent 50%);
+}
+
+/* Subtle fine dot grid overlay */
+.dotgrid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.10) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Duotone "photo" placeholder block — premium gradient stand-in for imagery */
+.duotone {
+  position: relative;
+  background:
+    linear-gradient(130deg, rgba(4, 37, 31, 0.10), rgba(11, 31, 37, 0.65)),
+    linear-gradient(60deg, var(--color-brand-700), var(--color-brand-500) 55%, var(--color-accent-400));
+  overflow: hidden;
+}
+.duotone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+  background-size: 18px 18px;
+  mix-blend-mode: overlay;
+}
+
+.card-shadow { box-shadow: 0 1px 2px rgba(11,31,37,0.06), 0 12px 32px -12px rgba(11,31,37,0.18); }
+.card-shadow-lg { box-shadow: 0 2px 4px rgba(11,31,37,0.05), 0 24px 60px -20px rgba(11,31,37,0.30); }
+
+/* Reveal-on-scroll (progressive enhancement; visible by default) */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal { animation: rise 0.7s var(--ease-out-soft) both; }
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+.floaty { animation: floaty 7s ease-in-out infinite; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .floaty, .marquee-track { animation: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* Thin underline-grow link */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s var(--ease-out-soft);
+}
+.link-underline:hover { background-size: 100% 2px; }
