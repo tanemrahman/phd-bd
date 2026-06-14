@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { Icon } from "@/components/icons";
@@ -169,44 +170,20 @@ export function Logo({
   return (
     <Link
       href="/"
-      className={cn("group inline-flex items-center gap-3", className)}
-      aria-label="PHD — home"
+      className={cn("group inline-flex items-center", className)}
+      aria-label="PHD — Partners in Health and Development — home"
     >
-      <span
+      <Image
+        src="/logo.jpg"
+        alt="Partners in Health and Development"
+        width={135}
+        height={154}
+        loading="eager"
         className={cn(
-          "grid h-11 w-11 place-items-center rounded-xl shadow-sm transition-transform group-hover:scale-105",
-          light ? "bg-white" : "bg-brand-700",
+          "h-16 w-auto rounded-lg shadow-sm transition-transform group-hover:scale-105 sm:h-20",
+          light && "ring-1 ring-white/15",
         )}
-      >
-        <svg viewBox="0 0 32 32" className="h-7 w-7" aria-hidden>
-          <path
-            d="M16 3c5 4 9 8 9 14a9 9 0 0 1-18 0c0-6 4-10 9-14Z"
-            fill={light ? "#0e7c64" : "#ffffff"}
-          />
-          <path
-            d="M16 11c2.4 1.8 4 3.6 4 6a4 4 0 1 1-8 0c0-2.4 1.6-4.2 4-6Z"
-            fill={light ? "#e0a536" : "#e0a536"}
-          />
-        </svg>
-      </span>
-      <span className="leading-none">
-        <span
-          className={cn(
-            "block font-display text-xl font-extrabold tracking-tight",
-            light ? "text-white" : "text-ink",
-          )}
-        >
-          PHD
-        </span>
-        <span
-          className={cn(
-            "block text-[0.62rem] font-semibold uppercase tracking-[0.14em]",
-            light ? "text-white/70" : "text-ink-soft",
-          )}
-        >
-          Bangladesh
-        </span>
-      </span>
+      />
     </Link>
   );
 }

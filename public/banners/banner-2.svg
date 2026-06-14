@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="640" viewBox="0 0 1600 640" fill="none">
+  <defs>
+    <linearGradient id="g2" x1="0" y1="0" x2="1600" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#04251f"/>
+      <stop offset="0.5" stop-color="#0d4f42"/>
+      <stop offset="1" stop-color="#1f9a7d"/>
+    </linearGradient>
+    <pattern id="d2" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="2" fill="#ffffff" fill-opacity="0.10"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="640" fill="url(#g2)"/>
+  <rect width="1600" height="640" fill="url(#d2)"/>
+  <text x="1560" y="600" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700" fill="#ffffff" fill-opacity="0.45" letter-spacing="3">DUMMY BANNER 2</text>
+</svg>

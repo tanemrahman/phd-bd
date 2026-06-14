@@ -45,7 +45,7 @@ export function SiteHeader() {
       )}
       onMouseLeave={() => setOpen(null)}
     >
-      <div className="rail flex h-18 items-center justify-between gap-4 py-3">
+      <div className="rail flex h-24 items-center justify-between gap-4 py-3 sm:h-28">
         <Logo />
 
         {/* Desktop nav */}
@@ -212,7 +212,7 @@ function MobileDrawer({ onClose }: { onClose: () => void }) {
         onClick={onClose}
       />
       <div className="absolute right-0 top-0 flex h-full w-full max-w-sm flex-col bg-paper shadow-2xl">
-        <div className="flex h-16 items-center justify-between border-b border-black/5 px-5">
+        <div className="flex h-24 items-center justify-between border-b border-black/5 px-5">
           <Logo />
           <button
             type="button"

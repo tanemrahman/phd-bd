@@ -2,14 +2,58 @@ import Link from "next/link";
 import { Button, Kicker, SectionHeading, Badge, toneText, toneBg } from "@/components/ui";
 import { Counter } from "@/components/counter";
 import { BangladeshMap } from "@/components/bangladesh-map";
+import { BannerCarousel, type Banner } from "@/components/banner-carousel";
 import { Icon, type IconKey } from "@/components/icons";
 import { programs } from "@/data/programs";
 import { headlineStats, stories, news, partnerGroups } from "@/data/content";
 
+const banners: Banner[] = [
+  {
+    src: "/banners/banner-1.svg",
+    alt: "PHD community programmes across Bangladesh",
+    eyebrow: "Development & humanitarian action since 1998",
+    title: (
+      <>
+        Serving <span className="text-accent-300">5&nbsp;million+</span> vulnerable
+        people across Bangladesh.
+      </>
+    ),
+    text: "PHD partners with the country's most exposed communities to build climate resilience, livelihoods and dignity that outlast any single project.",
+    primary: { label: "See our impact", href: "/impact" },
+    secondary: { label: "Explore our work", href: "/what-we-do" },
+  },
+  {
+    src: "/banners/banner-2.svg",
+    alt: "Climate resilience work on the Bangladesh coast",
+    eyebrow: "Climate resilience",
+    title: (
+      <>
+        Building climate resilience on the <span className="text-accent-300">coast</span>.
+      </>
+    ),
+    text: "From the chars to the haors, we climate-proof homes, water and livelihoods so families can withstand the next shock — not just survive the last one.",
+    primary: { label: "Our climate work", href: "/what-we-do" },
+    secondary: { label: "Where we work", href: "/where-we-work" },
+  },
+  {
+    src: "/banners/banner-3.svg",
+    alt: "PHD emergency response teams in the field",
+    eyebrow: "Emergency response",
+    title: (
+      <>
+        Emergency response in under <span className="text-accent-300">48 hours</span>.
+      </>
+    ),
+    text: "When disaster strikes, our locally led teams reach affected communities fast — with the standards, supplies and accountability that crises demand.",
+    primary: { label: "How we respond", href: "/what-we-do" },
+    secondary: { label: "Get involved", href: "/get-involved" },
+  },
+];
+
 export default function HomePage() {
   return (
     <>
-      <Hero />
+      <BannerCarousel banners={banners} />
       <ImpactBand />
       <Mission />
       <Programs />
@@ -23,91 +67,10 @@ export default function HomePage() {
   );
 }
 
-/* ============================ HERO ============================ */
-function Hero() {
-  return (
-    <section className="relative overflow-hidden mesh text-white">
-      <div className="absolute inset-0 dotgrid opacity-60" aria-hidden />
-      <div className="rail relative grid gap-12 py-20 lg:grid-cols-[1.15fr_0.85fr] lg:py-28">
-        <div className="reveal">
-          <Badge tone="accent" className="bg-white/10 text-accent-300 ring-white/20">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent-300" />
-            Development &amp; humanitarian action since 1998
-          </Badge>
-          <h1 className="mt-6 text-4xl font-extrabold leading-[1.05] sm:text-5xl lg:text-[3.7rem]">
-            Serving{" "}
-            <span className="text-accent-300">5&nbsp;million+</span>{" "}
-            vulnerable people across Bangladesh.
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
-            PHD partners with the country&apos;s most exposed communities — on the
-            coast, in the chars and across the haors — to build climate
-            resilience, livelihoods and dignity that outlast any single project.
-          </p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <Button href="/impact" variant="secondary" size="lg" withArrow>
-              See our impact
-            </Button>
-            <Button href="/what-we-do" variant="outline-white" size="lg">
-              Explore our work
-            </Button>
-          </div>
-          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-white/60">
-            <span className="flex items-center gap-2">
-              <Icon.check className="h-4 w-4 text-accent-300" /> CHS-certified
-            </span>
-            <span className="flex items-center gap-2">
-              <Icon.check className="h-4 w-4 text-accent-300" /> 38 donor partners
-            </span>
-            <span className="flex items-center gap-2">
-              <Icon.check className="h-4 w-4 text-accent-300" /> Independently audited
-            </span>
-          </div>
-        </div>
-
-        {/* Floating visual cluster */}
-        <div className="relative hidden lg:block">
-          <div className="duotone floaty absolute right-0 top-2 h-64 w-72 rounded-3xl" />
-          <div className="absolute right-40 top-40 h-56 w-56 rounded-3xl bg-accent-400/90 floaty [animation-delay:-2s]" />
-          <div className="absolute left-2 top-24 z-10 w-60 rounded-2xl bg-white p-5 text-ink card-shadow-lg reveal">
-            <div className="flex items-center gap-2 text-brand-700">
-              <Icon.leaf className="h-5 w-5" />
-              <span className="text-xs font-bold uppercase tracking-wide">
-                Climate resilience
-              </span>
-            </div>
-            <p className="mt-2 font-display text-3xl font-bold text-ink">
-              <Counter value={318_000} suffix="" />
-            </p>
-            <p className="text-sm text-ink-soft">people climate-proofed</p>
-          </div>
-          <div className="absolute bottom-2 right-4 z-10 w-56 rounded-2xl bg-white p-5 text-ink card-shadow-lg reveal [animation-delay:0.15s]">
-            <div className="flex items-center gap-2 text-coral-600">
-              <Icon.pulse className="h-5 w-5" />
-              <span className="text-xs font-bold uppercase tracking-wide">
-                Emergency response
-              </span>
-            </div>
-            <p className="mt-2 font-display text-3xl font-bold text-ink">
-              &lt;48 hrs
-            </p>
-            <p className="text-sm text-ink-soft">typical activation time</p>
-          </div>
-        </div>
-      </div>
-
-      {/* wave divider */}
-      <svg viewBox="0 0 1440 80" className="block w-full" preserveAspectRatio="none" aria-hidden>
-        <path d="M0,40 C360,90 1080,-10 1440,40 L1440,80 L0,80 Z" fill="#fbfbf8" />
-      </svg>
-    </section>
-  );
-}
-
 /* ============================ IMPACT BAND ============================ */
 function ImpactBand() {
   return (
-    <section className="relative -mt-2 pb-4">
+    <section className="relative pb-4 pt-8">
       <div className="rail">
         <div className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-black/5 ring-1 ring-black/5 card-shadow md:grid-cols-3 lg:grid-cols-5">
           {headlineStats.map((s) => (
